@@ -1,6 +1,7 @@
 package com.antonydamico.dao.contacts;
 
 //import com.antonydamico.mappers.ContactMapper;
+
 import com.antonydamico.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,8 +39,8 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public List<Contact> listContacts() {
-        String query = "SELECT contacts.first_name, contacts.last_name, contacts.email, countries.code FROM contacts " +
-                "INNER JOIN countries on contacts.country = countries.id";
+        String query = "SELECT contacts.id, contacts.first_name, contacts.last_name, contacts.email, countries.code FROM contacts " +
+                "INNER JOIN countries ON contacts.country = countries.id";
         return this.jdbcTemplate.query(query, new ContactMapper());
     }
 
