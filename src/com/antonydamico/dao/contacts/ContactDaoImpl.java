@@ -45,6 +45,12 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     @Override
+    public void createContact(Contact contact) {
+        String query = "INSERT INTO contacts (first_name, last_name, email, country) VALUES (?, ?, ?, ?)";
+        this.jdbcTemplate.update(query, contact.getFirstName(), contact.getLastName(), contact.getEmail(), 1);
+    }
+
+    @Override
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);

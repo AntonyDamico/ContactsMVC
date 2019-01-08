@@ -24,7 +24,9 @@
             <td><a href="">Update</a><a href="">Delete</a></td>
         </tr>
     </c:forEach>
+
+    <a href="/add">Create Contact</a>
 </table>
-<script src="${pageContext.request.contextPath}/resources/js/script.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/app.js"></script>
 </body>
 </html>

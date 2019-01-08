@@ -12,4 +12,6 @@ public interface ContactDao {
     Contact getContactById(Integer id);
 
     List<Contact> listContacts();
+
+    void createContact(Contact contact);
 }

@@ -6,6 +6,7 @@ public class Contact {
     private String lastName;
     private String email;
     private String countryCode;
+    private String countryId;
 
     public int getId() {
         return id;
@@ -45,5 +46,13 @@ public class Contact {
 
     public void setCountryCode(String countryCode) {
         this.countryCode = countryCode;
+    }
+
+    public String getCountryId() {
+        return countryId;
+    }
+
+    public void setCountryId(String countryId) {
+        this.countryId = countryId;
     }
 }
