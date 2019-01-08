@@ -16,4 +16,6 @@ public interface ContactDao {
     void createContact(Contact contact);
 
     void updateContact(Contact contact);
+
+    void deleteContact(Integer contactId);
 }

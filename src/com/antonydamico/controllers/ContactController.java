@@ -46,6 +46,13 @@ public class ContactController {
         return "redirect:list";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteContact(@PathVariable int id) {
+        System.out.println("hello");
+        contactDao.deleteContact(id);
+        return "redirect:/list";
+    }
+
     @Autowired
     public void setContactDao(ContactDao contactDao) {
         this.contactDao = contactDao;

@@ -24,7 +24,7 @@
             <td>${contact.countryCode}</td>
             <td>
                 <a href="${contextPath}/update/${contact.id}">Update</a>
-                <a href="">Delete</a>
+                <a href="${contextPath}/delete/${contact.id}">Delete</a>
             </td>
         </tr>
     </c:forEach>

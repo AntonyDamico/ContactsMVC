@@ -59,6 +59,12 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     @Override
+    public void deleteContact(Integer id) {
+        String query = "DELETE FROM contacts WHERE id = ?";
+        this.jdbcTemplate.update(query, id);
+    }
+
+    @Override
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
