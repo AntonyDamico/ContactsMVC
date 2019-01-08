@@ -1,4 +1,4 @@
-package com.antonydamico.dao;
+package com.antonydamico.dao.contacts;
 
 //import com.antonydamico.mappers.ContactMapper;
 import com.antonydamico.models.Contact;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 @Repository
-public class ContactDaoImpl {
+public class ContactDaoImpl implements ContactDao {
 
     private JdbcTemplate jdbcTemplate;
 
@@ -28,17 +28,20 @@ public class ContactDaoImpl {
         }
     }
 
+    @Override
     public Contact getContactById(Integer id) {
         String query = "SELECT * FROM contacts WHERE id = ?";
         return this.jdbcTemplate.queryForObject(query, new Object[]{id}, new ContactMapper());
     }
 
+    @Override
     public List<Contact> listContacts() {
         String query = "SELECT contacts.first_name, contacts.last_name, contacts.email, countries.code FROM contacts " +
                 "INNER JOIN countries on contacts.country = countries.id";
         return this.jdbcTemplate.query(query, new ContactMapper());
     }
 
+    @Override
     @Autowired
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
