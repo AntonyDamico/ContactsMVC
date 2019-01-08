@@ -5,11 +5,7 @@ import com.antonydamico.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,23 +14,36 @@ public class ContactController {
 
     private ContactDao contactDao;
 
-    @RequestMapping("/")
+    @GetMapping("/list")
     public String listIndex(Model model) {
         List<Contact> contactList = contactDao.listContacts();
         model.addAttribute("contactList", contactList);
         return "index";
     }
 
-    @GetMapping("/add")
-    public String addContact(Model model) {
+    @GetMapping("/create")
+    public String createContactForm(Model model) {
         model.addAttribute("contact", new Contact());
         return "create-contact-form";
     }
 
     @PostMapping("/create")
-    public String createContact(@ModelAttribute("contact") Contact contact) {
+    public String createContactForm(@ModelAttribute("contact") Contact contact) {
         contactDao.createContact(contact);
-        return "redirect:";
+        return "redirect:list";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateContact(@PathVariable int id, Model model) {
+        Contact contact = contactDao.getContactById(id);
+        model.addAttribute(contact);
+        return "edit-contact-form";
+    }
+
+    @PostMapping("/update")
+    public String updateContact(@ModelAttribute("contact") Contact contact) {
+        contactDao.updateContact(contact);
+        return "redirect:list";
     }
 
     @Autowired

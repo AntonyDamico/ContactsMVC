@@ -1,15 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>Contact List</title>
+    <title>Edit Contact</title>
     <link rel="stylesheet" href="${contextPath}/resources/css/styles.css">
 </head>
 <body>
-<h2>Add Contact</h2>
-<form:form action="${contextPath}/create" modelAttribute="contact">
+
+<h2>Edit contact ${contact.firstName} ${contact.lastName}</h2>
+<br><br>
+<form:form action="${contextPath}/update" modelAttribute="contact">
+    <form:hidden path="id"/>
     <form:label path="firstName">First Name</form:label>
     <form:input path="firstName"/>
     <br><br>

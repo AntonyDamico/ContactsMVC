@@ -14,4 +14,6 @@ public interface ContactDao {
     List<Contact> listContacts();
 
     void createContact(Contact contact);
+
+    void updateContact(Contact contact);
 }

@@ -33,7 +33,9 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public Contact getContactById(Integer id) {
-        String query = "SELECT * FROM contacts WHERE id = ?";
+        String query = "SELECT contacts.id, contacts.first_name, contacts.last_name, contacts.email, countries.code FROM contacts " +
+                "INNER JOIN countries ON contacts.country = countries.id " +
+                "WHERE contacts.id = ?";
         return this.jdbcTemplate.queryForObject(query, new Object[]{id}, new ContactMapper());
     }
 
@@ -48,6 +50,12 @@ public class ContactDaoImpl implements ContactDao {
     public void createContact(Contact contact) {
         String query = "INSERT INTO contacts (first_name, last_name, email, country) VALUES (?, ?, ?, ?)";
         this.jdbcTemplate.update(query, contact.getFirstName(), contact.getLastName(), contact.getEmail(), 1);
+    }
+
+    @Override
+    public void updateContact(Contact contact) {
+        String query = "UPDATE contacts SET first_name=?, last_name=?, email=?, country=? where id=?";
+        this.jdbcTemplate.update(query, contact.getFirstName(), contact.getLastName(), contact.getEmail(), 1, contact.getId());
     }
 
     @Override
