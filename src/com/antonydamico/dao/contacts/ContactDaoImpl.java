@@ -24,6 +24,8 @@ public class ContactDaoImpl implements ContactDao {
             contact.setId(resultSet.getInt("id"));
             contact.setFirstName(resultSet.getString("first_name"));
             contact.setLastName(resultSet.getString("last_name"));
+            contact.setEmail(resultSet.getString("email"));
+            contact.setCountryCode(resultSet.getString("code"));
             return contact;
         }
     }
