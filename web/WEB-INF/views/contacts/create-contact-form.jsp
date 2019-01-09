@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="${contextPath}/resources/css/styles.css">
 </head>
 <body>
+
 <h2>Add Contact</h2>
+<br><br>
 <form:form action="${contextPath}/contacts/create" modelAttribute="contact">
     <form:label path="firstName">First Name</form:label>
     <form:input path="firstName"/>
@@ -18,6 +20,12 @@
     <br><br>
     <form:label path="email">Email</form:label>
     <form:input path="email"/>
+    <br><br>
+    <form:select path="countryId">
+        <c:forEach var="country" items="${countries}">
+            <form:option value="${country.id}" label="${country.name}"/>
+        </c:forEach>
+    </form:select>
     <br><br>
     <input type="submit" value="Submit">
 </form:form>

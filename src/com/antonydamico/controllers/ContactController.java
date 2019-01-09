@@ -1,19 +1,23 @@
 package com.antonydamico.controllers;
 
 import com.antonydamico.dao.contacts.ContactDao;
+import com.antonydamico.dao.countries.CountryDao;
 import com.antonydamico.models.Contact;
+import com.antonydamico.models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/contacts")
 public class ContactController {
 
     private ContactDao contactDao;
+    private CountryDao countryDao;
 
     @GetMapping("/list")
     public String listIndex(Model model) {
@@ -24,12 +28,15 @@ public class ContactController {
 
     @GetMapping("/create")
     public String createContactForm(Model model) {
+        List<Country> countries = this.countryDao.listCountries();
         model.addAttribute("contact", new Contact());
+        model.addAttribute("countries", countries);
         return "contacts/create-contact-form";
     }
 
     @PostMapping("/create")
     public String createContactForm(@ModelAttribute("contact") Contact contact) {
+        System.out.println(contact.getCountryId());
         contactDao.createContact(contact);
         return "redirect:list";
     }
@@ -37,7 +44,9 @@ public class ContactController {
     @GetMapping("/update/{id}")
     public String updateContact(@PathVariable int id, Model model) {
         Contact contact = contactDao.getContactById(id);
+        List<Country> countries = this.countryDao.listCountries();
         model.addAttribute(contact);
+        model.addAttribute("countries", countries);
         return "contacts/edit-contact-form";
     }
 
@@ -57,5 +66,10 @@ public class ContactController {
     @Autowired
     public void setContactDao(ContactDao contactDao) {
         this.contactDao = contactDao;
+    }
+
+    @Autowired
+    public void setCountryDao(CountryDao countryDao) {
+        this.countryDao = countryDao;
     }
 }

@@ -27,6 +27,7 @@
         </c:forEach>
     </table>
 
+    <a href="${contextPath}/countries/create">Add Country</a>
 <script src="${contextPath}/resources/js/app.js"></script>
 </body>
 </html>

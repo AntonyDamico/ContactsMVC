@@ -22,6 +22,12 @@
     <form:label path="email">Email</form:label>
     <form:input path="email"/>
     <br><br>
+    <form:select path="countryId">
+        <c:forEach var="country" items="${countries}">
+            <form:option value="${country.id}" label="${country.name}"/>
+        </c:forEach>
+    </form:select>
+    <br><br>
     <input type="submit" value="Submit">
 </form:form>
 

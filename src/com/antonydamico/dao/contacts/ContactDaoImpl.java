@@ -1,7 +1,5 @@
 package com.antonydamico.dao.contacts;
 
-//import com.antonydamico.mappers.ContactMapper;
-
 import com.antonydamico.models.Contact;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -49,13 +47,19 @@ public class ContactDaoImpl implements ContactDao {
     @Override
     public void createContact(Contact contact) {
         String query = "INSERT INTO contacts (first_name, last_name, email, country) VALUES (?, ?, ?, ?)";
-        this.jdbcTemplate.update(query, contact.getFirstName(), contact.getLastName(), contact.getEmail(), 1);
+        this.jdbcTemplate.update(query,
+                contact.getFirstName(), contact.getLastName(),
+                contact.getEmail(), contact.getCountryId()
+        );
     }
 
     @Override
     public void updateContact(Contact contact) {
         String query = "UPDATE contacts SET first_name=?, last_name=?, email=?, country=? where id=?";
-        this.jdbcTemplate.update(query, contact.getFirstName(), contact.getLastName(), contact.getEmail(), 1, contact.getId());
+        this.jdbcTemplate.update(query,
+                contact.getFirstName(), contact.getLastName(),
+                contact.getEmail(), contact.getCountryId(), contact.getId()
+        );
     }
 
     @Override
