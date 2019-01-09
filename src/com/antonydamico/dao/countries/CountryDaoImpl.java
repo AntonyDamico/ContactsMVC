@@ -64,4 +64,13 @@ public class CountryDaoImpl implements CountryDao {
         String query = "DELETE FROM countries WHERE id = ?";
         this.jdbcTemplate.update(query, id);
     }
+
+    @Override
+    public List<Country> getCountriesStats() {
+        String query = " select countries.name, " +
+                "cast(count(contacts.country)*100/(select count(*) from contacts) as unsigned) as countries_avg  " +
+                "from contacts inner join countries on contacts.country = countries.id group by contacts.country;";
+        return null;
+
+    }
 }

@@ -53,6 +53,13 @@ public class CountryController {
         return "redirect:list";
     }
 
+    @GetMapping("/stats")
+    public String countryStats(Model model) {
+        List<Country> countriesStats = countryDao.getCountriesStats();
+        model.addAttribute("stats", countriesStats);
+        return "country-stats";
+    }
+
     @Autowired
     public void setCountryDao(CountryDao countryDao) {
         this.countryDao = countryDao;

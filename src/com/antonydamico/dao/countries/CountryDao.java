@@ -19,4 +19,6 @@ public interface CountryDao {
     void updateCountry(Country country);
 
     void deleteCountry(int id);
+
+    List<Country> getCountriesStats();
 }
