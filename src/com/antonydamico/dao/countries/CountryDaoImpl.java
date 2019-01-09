@@ -44,4 +44,22 @@ public class CountryDaoImpl implements CountryDao {
         String query = "SELECT * FROM countries WHERE id = ?";
         return this.jdbcTemplate.queryForObject(query, new Object[]{id}, new CountryMapper());
     }
+
+    @Override
+    public void createCountry(Country country) {
+        String query = "INSERT INTO countries (name, code) VALUES (?, ?)";
+        this.jdbcTemplate.update(query, country.getName(), country.getCode());
+    }
+
+    @Override
+    public void updateCountry(Country country) {
+        String query = "UPDATE countries SET name = ?, code = ? WHERE id = ?";
+        this.jdbcTemplate.update(query, country.getName(), country.getCode(), country.getId());
+    }
+
+    @Override
+    public void deleteCountry(int id) {
+        String query = "DELETE FROM countries WHERE id = ?";
+        this.jdbcTemplate.update(query, id);
+    }
 }

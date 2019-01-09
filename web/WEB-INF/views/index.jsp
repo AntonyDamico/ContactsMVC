@@ -8,5 +8,6 @@
 <body>
     <h1>Main Menu</h1>
     <a href="${contextPath}/contacts/list">Contacts</a>
+    <a href="${contextPath}/countries/list">Countries</a>
 </body>
 </html>
