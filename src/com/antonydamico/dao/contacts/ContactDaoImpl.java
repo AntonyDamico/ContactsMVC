@@ -1,6 +1,7 @@
 package com.antonydamico.dao.contacts;
 
 import com.antonydamico.models.Contact;
+import com.antonydamico.models.Country;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -24,7 +25,7 @@ public class ContactDaoImpl implements ContactDao {
             contact.setFirstName(resultSet.getString("first_name"));
             contact.setLastName(resultSet.getString("last_name"));
             contact.setEmail(resultSet.getString("email"));
-            contact.setCountryCode(resultSet.getString("code"));
+            contact.setCountry(new Country(resultSet.getString("code")));
             return contact;
         }
     }
@@ -46,10 +47,11 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override
     public void createContact(Contact contact) {
+        System.out.println("country id: " + contact.getCountry().getId());
         String query = "INSERT INTO contacts (first_name, last_name, email, country) VALUES (?, ?, ?, ?)";
         this.jdbcTemplate.update(query,
                 contact.getFirstName(), contact.getLastName(),
-                contact.getEmail(), contact.getCountryId()
+                contact.getEmail(), contact.getCountry().getId()
         );
     }
 
@@ -58,7 +60,7 @@ public class ContactDaoImpl implements ContactDao {
         String query = "UPDATE contacts SET first_name=?, last_name=?, email=?, country=? where id=?";
         this.jdbcTemplate.update(query,
                 contact.getFirstName(), contact.getLastName(),
-                contact.getEmail(), contact.getCountryId(), contact.getId()
+                contact.getEmail(), contact.getCountry().getCode(), contact.getId()
         );
     }
 

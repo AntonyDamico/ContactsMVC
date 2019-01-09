@@ -5,8 +5,9 @@ public class Contact {
     private String firstName;
     private String lastName;
     private String email;
-    private String countryCode;
-    private String countryId;
+//    private String countryCode;
+//    private String countryId;
+    private Country country;
 
     public int getId() {
         return id;
@@ -40,19 +41,12 @@ public class Contact {
         this.email = email;
     }
 
-    public String getCountryCode() {
-        return countryCode;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
-    public String getCountryId() {
-        return countryId;
-    }
-
-    public void setCountryId(String countryId) {
-        this.countryId = countryId;
-    }
 }

@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/contacts")
@@ -36,7 +35,6 @@ public class ContactController {
 
     @PostMapping("/create")
     public String createContactForm(@ModelAttribute("contact") Contact contact) {
-        System.out.println(contact.getCountryId());
         contactDao.createContact(contact);
         return "redirect:list";
     }

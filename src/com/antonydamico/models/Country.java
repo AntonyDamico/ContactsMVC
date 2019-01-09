@@ -5,6 +5,19 @@ public class Country {
     private String name;
     private String code;
 
+    public Country() {
+
+    }
+
+    public Country(String name, String code) {
+        this.name = name;
+        this.code = code;
+    }
+
+    public Country(String code) {
+        this.code = code;
+    }
+
     public int getId() {
         return id;
     }

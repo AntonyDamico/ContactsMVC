@@ -21,7 +21,7 @@
             <td>${contact.firstName}</td>
             <td>${contact.lastName}</td>
             <td>${contact.email}</td>
-            <td>${contact.countryCode}</td>
+            <td>${contact.country.code}</td>
             <td>
                 <a href="${contextPath}/contacts/update/${contact.id}">Update</a>
                 <a href="${contextPath}/contacts/delete/${contact.id}">Delete</a>
