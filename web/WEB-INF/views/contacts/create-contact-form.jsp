@@ -9,7 +9,7 @@
 </head>
 <body>
 <h2>Add Contact</h2>
-<form:form action="${contextPath}/create" modelAttribute="contact">
+<form:form action="${contextPath}/contacts/create" modelAttribute="contact">
     <form:label path="firstName">First Name</form:label>
     <form:input path="firstName"/>
     <br><br>

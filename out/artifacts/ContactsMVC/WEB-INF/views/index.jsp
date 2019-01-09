@@ -3,34 +3,10 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>Contact List</title>
-    <link rel="stylesheet" href="${contextPath}/resources/css/styles.css">
+    <title>Main Menu</title>
 </head>
 <body>
-<h1>Contact list</h1>
-<table>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>Email</th>
-        <th>Country</th>
-        <th>Actions</th>
-    </tr>
-    <c:forEach var="contact" items="${contactList}">
-        <tr>
-            <td>${contact.firstName}</td>
-            <td>${contact.lastName}</td>
-            <td>${contact.email}</td>
-            <td>${contact.countryCode}</td>
-            <td>
-                <a href="${contextPath}/update/${contact.id}">Update</a>
-                <a href="${contextPath}/delete/${contact.id}">Delete</a>
-            </td>
-        </tr>
-    </c:forEach>
-
-    <a href="${contextPath}/create">Create Contact</a>
-</table>
-<script src="${contextPath}/resources/js/app.js"></script>
+    <h1>Main Menu</h1>
+    <a href="${contextPath}/contacts/list">Contacts</a>
 </body>
 </html>

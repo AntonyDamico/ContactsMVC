@@ -11,7 +11,7 @@
 
 <h2>Edit contact ${contact.firstName} ${contact.lastName}</h2>
 <br><br>
-<form:form action="${contextPath}/update" modelAttribute="contact">
+<form:form action="${contextPath}/contacts/update" modelAttribute="contact">
     <form:hidden path="id"/>
     <form:label path="firstName">First Name</form:label>
     <form:input path="firstName"/>

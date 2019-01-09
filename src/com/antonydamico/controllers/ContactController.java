@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
+@RequestMapping("/contacts")
 public class ContactController {
 
     private ContactDao contactDao;
@@ -18,13 +19,13 @@ public class ContactController {
     public String listIndex(Model model) {
         List<Contact> contactList = contactDao.listContacts();
         model.addAttribute("contactList", contactList);
-        return "index";
+        return "contacts/index";
     }
 
     @GetMapping("/create")
     public String createContactForm(Model model) {
         model.addAttribute("contact", new Contact());
-        return "create-contact-form";
+        return "contacts/create-contact-form";
     }
 
     @PostMapping("/create")
@@ -37,7 +38,7 @@ public class ContactController {
     public String updateContact(@PathVariable int id, Model model) {
         Contact contact = contactDao.getContactById(id);
         model.addAttribute(contact);
-        return "edit-contact-form";
+        return "contacts/edit-contact-form";
     }
 
     @PostMapping("/update")
@@ -50,7 +51,7 @@ public class ContactController {
     public String deleteContact(@PathVariable int id) {
         System.out.println("hello");
         contactDao.deleteContact(id);
-        return "redirect:/list";
+        return "redirect:list";
     }
 
     @Autowired
