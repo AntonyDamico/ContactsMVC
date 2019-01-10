@@ -4,6 +4,7 @@ import com.antonydamico.models.Contact;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Map;
 
 public interface ContactDao {
 

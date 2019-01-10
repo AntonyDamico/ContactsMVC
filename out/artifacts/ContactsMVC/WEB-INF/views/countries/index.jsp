@@ -28,6 +28,7 @@
     </table>
 
     <a href="${contextPath}/countries/create">Add Country</a>
+    <a href="${contextPath}/countries/stats">Country stats</a>
 <script src="${contextPath}/resources/js/app.js"></script>
 </body>
 </html>

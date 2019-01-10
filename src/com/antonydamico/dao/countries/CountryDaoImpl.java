@@ -66,11 +66,18 @@ public class CountryDaoImpl implements CountryDao {
     }
 
     @Override
-    public List<Country> getCountriesStats() {
-        String query = " select countries.name, " +
-                "cast(count(contacts.country)*100/(select count(*) from contacts) as unsigned) as countries_avg  " +
-                "from contacts inner join countries on contacts.country = countries.id group by contacts.country;";
-        return null;
+    public Map<String, Integer> getCountriesStats() {
+        String query = " SELECT countries.name, " +
+                "CAST(COUNT(contacts.country)*100/(SELECT COUNT(*) FROM contacts) AS unsigned) AS countries_avg  " +
+                "FROM contacts INNER JOIN countries ON contacts.country = countries.id GROUP BY contacts.country";
 
+        return this.jdbcTemplate.query(query, (ResultSet resultSet) -> {
+            Map<String, Integer> percentages = new HashMap<>();
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString("name"));
+                percentages.put(resultSet.getString("name"), resultSet.getInt("countries_avg"));
+            }
+            return percentages;
+        });
     }
 }

@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("countries")
@@ -55,9 +56,9 @@ public class CountryController {
 
     @GetMapping("/stats")
     public String countryStats(Model model) {
-        List<Country> countriesStats = countryDao.getCountriesStats();
+        Map<String, Integer> countriesStats = countryDao.getCountriesStats();
         model.addAttribute("stats", countriesStats);
-        return "country-stats";
+        return "countries/country-stats";
     }
 
     @Autowired
